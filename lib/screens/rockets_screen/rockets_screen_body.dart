@@ -58,26 +58,4 @@ class _RocketsScreensBodyState extends State<RocketsScreensBody> {
         });
 
   }
-
-
-  /*
-   buildRocketBuilder() {
-    return  BlocBuilder<RocketBloc, QueryState<Rocket$Query>>(
-        bloc: rocketBloc,
-        builder: (_,state){
-          return state.when(
-              initial: () => Container(),
-              loading: (_) => Container(height: 25.h, child: Center(child: CircularProgressIndicator())),
-              error: (error,__,_){
-                log.i(error);
-                return Container(
-                  child: Center(child: Text(S.of(context).serverError),),
-                );},
-              loaded: RocketsDetailsScreen(context: context).rocketDetailsWidget,
-              refetch: RocketsDetailsScreen(context: context,).rocketDetailsWidget,
-              fetchMore:RocketsDetailsScreen(context: context).rocketDetailsWidget
-          );
-        });}
-*/
-
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:sizer/sizer.dart';
 import 'package:spacex_tracker/generated/l10n.dart';
+import 'package:spacex_tracker/utilities/app_theme.dart';
 import 'package:spacex_tracker/utilities/logger/simple_log_printer.dart';
 import 'package:spacex_tracker/widgets/home_screen_card.dart';
 
@@ -21,7 +22,8 @@ class HomeScreenBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(backgroundColor:  Colors.black12,
+    return Scaffold(
+      backgroundColor:  Theme.of(context).homeScreenBackgroundColor,
     body: Center(
         child: Container(
           padding: EdgeInsets.only(left: 5.w,right: 5.w,top: 5.h),
