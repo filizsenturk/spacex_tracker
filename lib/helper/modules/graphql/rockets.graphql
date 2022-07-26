@@ -1,0 +1,26 @@
+query rockets{
+    rockets{
+        active
+        first_stage {
+            reusable
+            engines
+        }
+        stages
+        landing_legs {
+            material
+            number
+        }
+        cost_per_launch
+        name
+        second_stage {
+            fuel_amount_tons
+        }
+        success_rate_pct
+        id
+        description
+        height {
+            meters
+            feet
+        }
+    }
+}

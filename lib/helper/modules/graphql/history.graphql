@@ -1,0 +1,32 @@
+query history($id: ID!){
+    history(id: $id){
+        title
+        details
+        flight {
+            launch_year
+            mission_name
+            is_tentative
+            details
+            launch_success
+            rocket {
+               rocket_name
+                rocket {
+                    active
+                    name
+                    landing_legs {
+                        material
+                        number
+                    }
+                    success_rate_pct
+                    engines {
+                        number
+                        version
+                    }
+                    boosters
+                    cost_per_launch
+                    country
+                }
+            }
+        }
+    }
+}

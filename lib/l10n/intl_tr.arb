@@ -1,0 +1,20 @@
+{
+  "language": "Türkçe",
+  "homeScreen": "Ana sayfa",
+  "missions": "Missions",
+  "serverError": "Server hatası",
+  "active": "aktif",
+  "inactive": "aktif değil",
+  "moreInfo": "daha fazla bilgi",
+  "rocketName": "Roket adı",
+  "successRate": "Başarı Oranı",
+  "boosters": "Ateşleyiciler",
+  "engine": "Motor",
+  "costPerLunch": "Kalkış maliyeti",
+  "reUseable": "Yeniden Kullanılabilir",
+  "landingLegsMaterial": "İniş Bacaklarında kullanılan materyal",
+  "landingLegsNumber": "İniş bacağı sayısı",
+  "firstFlight" : "İlk uçuş",
+  "launches" : "Kalkışlar",
+  "landings" : "İnişler"
+}

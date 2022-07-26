@@ -1,0 +1,9 @@
+query mission($id: ID!){
+    mission(id: $id){
+        name
+        wikipedia
+        website
+        description
+        manufacturers
+    }
+}

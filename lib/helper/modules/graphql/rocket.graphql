@@ -1,0 +1,21 @@
+query rocket($id: ID!){
+    rocket(id: $id){
+        active
+        boosters
+        name
+        success_rate_pct
+        second_stage {
+            engines
+        }
+        first_stage {
+            reusable
+            engines
+        }
+        cost_per_launch
+        landing_legs {
+            material
+            number
+        }
+        first_flight
+    }
+}

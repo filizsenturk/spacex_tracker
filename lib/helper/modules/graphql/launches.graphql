@@ -1,0 +1,36 @@
+query launches{
+    launches{
+        id
+        links {
+            article_link
+        }
+        launch_year
+        details
+        rocket {
+            rocket_name
+            rocket_type
+            rocket{
+                active
+                company
+                country
+                wikipedia
+                landing_legs {
+                    material
+                    number
+                }
+                id
+                boosters
+                stages
+                engines {
+                    type
+                }
+                description
+                first_flight
+                first_stage {
+                    reusable
+                }
+            }
+
+        }
+    }
+}

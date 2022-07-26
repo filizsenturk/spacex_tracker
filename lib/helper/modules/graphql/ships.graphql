@@ -1,0 +1,18 @@
+query  ships{
+    ships{
+        active
+        id
+        image
+        missions {
+            name
+            flight
+        }
+        successful_landings
+        year_built
+        attempted_landings
+        class
+        roles
+        home_port
+        model
+    }
+}

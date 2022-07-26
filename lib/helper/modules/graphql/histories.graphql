@@ -1,0 +1,21 @@
+query histories{
+    histories{
+        id
+        details
+        title
+        links {
+            article
+        }
+        flight {
+            launch_year
+            id
+            upcoming
+            mission_id
+            mission_name
+            launch_success
+            rocket {
+                rocket_name
+            }
+        }
+    }
+}

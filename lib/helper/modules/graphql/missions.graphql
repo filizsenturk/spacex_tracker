@@ -1,0 +1,10 @@
+query missions{
+    missions{
+        id
+        name
+        wikipedia
+        website
+        description
+        manufacturers
+    }
+}

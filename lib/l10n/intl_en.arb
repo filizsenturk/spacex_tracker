@@ -1,0 +1,22 @@
+{
+  "language" : "English",
+  "homeScreen": "Home Screen",
+  "missions":  "Missions",
+  "serverError": "Server Error",
+  "active": "active",
+  "inactive": "inactive",
+  "moreInfo": "more info",
+  "rocketName": "Rocket Name",
+  "successRate": "Success Rate",
+  "boosters": "Boosters",
+  "engine": "Engine",
+  "costPerLunch": "Cost Per Lunch",
+  "reUseable": "Reuseable",
+  "landingLegsMaterial": "Landing Legs Material",
+  "landingLegsNumber": "Landing Legs Number",
+  "firstFlight" : "First Flight",
+  "launches" : "Launches",
+  "landings" : "Landings"
+
+
+}

@@ -1,0 +1,16 @@
+targets:
+  $default:
+    sources:
+      - lib/**
+      - graphql_config/**
+      - graphql_config/spaceXSchema.graphql
+    builders:
+      artemis:
+        options:
+          scalar_mapping:
+            - graphql_type: Date
+              dart_type: DateTime
+          schema_mapping:
+            - output: lib/helper/api_data/graphql/graphql_api.dart
+              schema: graphql_config/spaceXSchema.graphql
+              queries_glob: lib/helper/modules/graphql/**.graphql

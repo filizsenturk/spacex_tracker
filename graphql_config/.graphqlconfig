@@ -1,0 +1,21 @@
+{
+  "name": "SpaceX GraphQL Schema",
+  "schemaPath": "spaceXSchema.graphql",
+  "schema": "https://api.spacex.land/graphql/",
+  "extensions": {
+    "endpoints": {
+      "Default GraphQL endpoint": {
+        "url": "https://api.spacex.land/graphql",
+        "headers": "JS GraphQL"
+      },
+      "introspect": true
+    },
+    "Release GraphQL Endpoint" : {
+      "url": "https://api.spacex.land/graphql",
+      "headers": {
+        "user-agent": "JS GraphQL"
+      },
+      "introspect": true
+    }
+  }
+}
