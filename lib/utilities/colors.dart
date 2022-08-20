@@ -16,5 +16,6 @@ class AppColors {
   static final lightDescriptionTextColor =  HexColor('#FFFFFF');
   static final lightLandingColor = HexColor('#0f5086');
   static final lightTextColor=HexColor('#FFFFFF');
+  static final HomeButtonColor = HexColor('#FFFFFF');
 
 }

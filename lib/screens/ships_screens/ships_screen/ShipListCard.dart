@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
@@ -71,8 +72,12 @@ class _ShipListCardState extends State<ShipListCard> {
                     width: 10.w,
                     color: Colors.black12,
                   )
-                : Image.network(widget.imageUrl!,
-              errorBuilder: (context,exception,stacktrace){
+                : CachedNetworkImage(imageUrl: widget.imageUrl!,
+              placeholder: (context, url) => Container(
+                width: 3.w,
+                child: const CircularProgressIndicator(),
+              ),
+              errorWidget: (context,exception,stacktrace){
                 return Container();
               },
             ),

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -20,17 +21,14 @@ class GalleryFullScreen extends StatelessWidget {
       ),
       items: imgList
           .map((item) => Container(
+        height: 100.h,
                 child: Center(
-                    child: Image.network(
-                  item,
+                    child: CachedNetworkImage(
+                  imageUrl:  item,
                   fit: BoxFit.cover,
-                  height: 100.h,
-                      loadingBuilder: ( context,  child, loadingProgress){
-                        if (loadingProgress == null) return child;
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      },
+                    placeholder: (context, url) => Container(
+                        width:3.w,child: CircularProgressIndicator()),
+                      errorWidget: (context,_,__){return Container();},
                 )),
               ))
           .toList(),

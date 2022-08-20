@@ -37,6 +37,9 @@
   "spacexHistory" : "SpaceX History",
   "succes": "Success",
   "failed" :"Failed",
-  "gallery": "Gallery"
+  "gallery": "Gallery",
+  "yes": "Yes",
+  "no": "No",
+  "unknown": "Unknown"
 
 }

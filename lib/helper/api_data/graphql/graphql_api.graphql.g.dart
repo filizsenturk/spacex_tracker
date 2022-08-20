@@ -320,29 +320,58 @@ Map<String, dynamic> _$Mission$QueryToJson(Mission$Query instance) =>
       'mission': instance.mission?.toJson(),
     };
 
-Landings$Query$Launch _$Landings$Query$LaunchFromJson(
+Landings$Query$Landpad$Location _$Landings$Query$Landpad$LocationFromJson(
         Map<String, dynamic> json) =>
-    Landings$Query$Launch()
-      ..launchSuccess = json['launch_success'] as bool?
-      ..details = json['details'] as String?;
+    Landings$Query$Landpad$Location()
+      ..name = json['name'] as String?
+      ..region = json['region'] as String?;
 
-Map<String, dynamic> _$Landings$Query$LaunchToJson(
-        Landings$Query$Launch instance) =>
+Map<String, dynamic> _$Landings$Query$Landpad$LocationToJson(
+        Landings$Query$Landpad$Location instance) =>
     <String, dynamic>{
-      'launch_success': instance.launchSuccess,
+      'name': instance.name,
+      'region': instance.region,
+    };
+
+Landings$Query$Landpad _$Landings$Query$LandpadFromJson(
+        Map<String, dynamic> json) =>
+    Landings$Query$Landpad()
+      ..attemptedLandings = json['attempted_landings'] as String?
+      ..details = json['details'] as String?
+      ..fullName = json['full_name'] as String?
+      ..id = json['id'] as String?
+      ..landingType = json['landing_type'] as String?
+      ..location = json['location'] == null
+          ? null
+          : Landings$Query$Landpad$Location.fromJson(
+              json['location'] as Map<String, dynamic>)
+      ..status = json['status'] as String?
+      ..successfulLandings = json['successful_landings'] as String?;
+
+Map<String, dynamic> _$Landings$Query$LandpadToJson(
+        Landings$Query$Landpad instance) =>
+    <String, dynamic>{
+      'attempted_landings': instance.attemptedLandings,
       'details': instance.details,
+      'full_name': instance.fullName,
+      'id': instance.id,
+      'landing_type': instance.landingType,
+      'location': instance.location?.toJson(),
+      'status': instance.status,
+      'successful_landings': instance.successfulLandings,
     };
 
 Landings$Query _$Landings$QueryFromJson(Map<String, dynamic> json) =>
     Landings$Query()
-      ..launchNext = json['launchNext'] == null
-          ? null
-          : Landings$Query$Launch.fromJson(
-              json['launchNext'] as Map<String, dynamic>);
+      ..landpads = (json['landpads'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Landings$Query$Landpad.fromJson(e as Map<String, dynamic>))
+          .toList();
 
 Map<String, dynamic> _$Landings$QueryToJson(Landings$Query instance) =>
     <String, dynamic>{
-      'launchNext': instance.launchNext?.toJson(),
+      'landpads': instance.landpads?.map((e) => e?.toJson()).toList(),
     };
 
 Dragon$Query$Dragon$DragonHeatShield
@@ -532,6 +561,27 @@ Map<String, dynamic> _$Payloads$QueryToJson(Payloads$Query instance) =>
       'payloads': instance.payloads?.map((e) => e?.toJson()).toList(),
     };
 
+Missions$Query$Mission$Payload _$Missions$Query$Mission$PayloadFromJson(
+        Map<String, dynamic> json) =>
+    Missions$Query$Mission$Payload()
+      ..nationality = json['nationality'] as String?
+      ..payloadType = json['payload_type'] as String?
+      ..manufacturer = json['manufacturer'] as String?
+      ..customers = (json['customers'] as List<dynamic>?)
+          ?.map((e) => e as String?)
+          .toList()
+      ..reused = json['reused'] as bool?;
+
+Map<String, dynamic> _$Missions$Query$Mission$PayloadToJson(
+        Missions$Query$Mission$Payload instance) =>
+    <String, dynamic>{
+      'nationality': instance.nationality,
+      'payload_type': instance.payloadType,
+      'manufacturer': instance.manufacturer,
+      'customers': instance.customers,
+      'reused': instance.reused,
+    };
+
 Missions$Query$Mission _$Missions$Query$MissionFromJson(
         Map<String, dynamic> json) =>
     Missions$Query$Mission()
@@ -542,6 +592,12 @@ Missions$Query$Mission _$Missions$Query$MissionFromJson(
       ..description = json['description'] as String?
       ..manufacturers = (json['manufacturers'] as List<dynamic>?)
           ?.map((e) => e as String?)
+          .toList()
+      ..payloads = (json['payloads'] as List<dynamic>?)
+          ?.map((e) => e == null
+              ? null
+              : Missions$Query$Mission$Payload.fromJson(
+                  e as Map<String, dynamic>))
           .toList();
 
 Map<String, dynamic> _$Missions$Query$MissionToJson(
@@ -553,6 +609,7 @@ Map<String, dynamic> _$Missions$Query$MissionToJson(
       'website': instance.website,
       'description': instance.description,
       'manufacturers': instance.manufacturers,
+      'payloads': instance.payloads?.map((e) => e?.toJson()).toList(),
     };
 
 Missions$Query _$Missions$QueryFromJson(Map<String, dynamic> json) =>
@@ -735,12 +792,14 @@ Rockets$Query$Rocket$RocketSecondStage
     _$Rockets$Query$Rocket$RocketSecondStageFromJson(
             Map<String, dynamic> json) =>
         Rockets$Query$Rocket$RocketSecondStage()
-          ..fuelAmountTons = (json['fuel_amount_tons'] as num?)?.toDouble();
+          ..fuelAmountTons = (json['fuel_amount_tons'] as num?)?.toDouble()
+          ..engines = json['engines'] as int?;
 
 Map<String, dynamic> _$Rockets$Query$Rocket$RocketSecondStageToJson(
         Rockets$Query$Rocket$RocketSecondStage instance) =>
     <String, dynamic>{
       'fuel_amount_tons': instance.fuelAmountTons,
+      'engines': instance.engines,
     };
 
 Rockets$Query$Rocket$Distance _$Rockets$Query$Rocket$DistanceFromJson(
@@ -760,11 +819,16 @@ Rockets$Query$Rocket _$Rockets$Query$RocketFromJson(
         Map<String, dynamic> json) =>
     Rockets$Query$Rocket()
       ..active = json['active'] as bool?
+      ..boosters = json['boosters'] as int?
+      ..company = json['company'] as String?
       ..firstStage = json['first_stage'] == null
           ? null
           : Rockets$Query$Rocket$RocketFirstStage.fromJson(
               json['first_stage'] as Map<String, dynamic>)
       ..stages = json['stages'] as int?
+      ..firstFlight = json['first_flight'] == null
+          ? null
+          : DateTime.parse(json['first_flight'] as String)
       ..landingLegs = json['landing_legs'] == null
           ? null
           : Rockets$Query$Rocket$RocketLandingLegs.fromJson(
@@ -787,8 +851,11 @@ Map<String, dynamic> _$Rockets$Query$RocketToJson(
         Rockets$Query$Rocket instance) =>
     <String, dynamic>{
       'active': instance.active,
+      'boosters': instance.boosters,
+      'company': instance.company,
       'first_stage': instance.firstStage?.toJson(),
       'stages': instance.stages,
+      'first_flight': instance.firstFlight?.toIso8601String(),
       'landing_legs': instance.landingLegs?.toJson(),
       'cost_per_launch': instance.costPerLaunch,
       'name': instance.name,
@@ -1004,6 +1071,7 @@ Ships$Query$Ship _$Ships$Query$ShipFromJson(Map<String, dynamic> json) =>
       ..active = json['active'] as bool?
       ..id = json['id'] as String?
       ..image = json['image'] as String?
+      ..name = json['name'] as String?
       ..missions = (json['missions'] as List<dynamic>?)
           ?.map((e) => e == null
               ? null
@@ -1017,13 +1085,15 @@ Ships$Query$Ship _$Ships$Query$ShipFromJson(Map<String, dynamic> json) =>
       ..roles =
           (json['roles'] as List<dynamic>?)?.map((e) => e as String?).toList()
       ..homePort = json['home_port'] as String?
-      ..model = json['model'] as String?;
+      ..model = json['model'] as String?
+      ..type = json['type'] as String?;
 
 Map<String, dynamic> _$Ships$Query$ShipToJson(Ships$Query$Ship instance) =>
     <String, dynamic>{
       'active': instance.active,
       'id': instance.id,
       'image': instance.image,
+      'name': instance.name,
       'missions': instance.missions?.map((e) => e?.toJson()).toList(),
       'successful_landings': instance.successfulLandings,
       'year_built': instance.yearBuilt,
@@ -1032,6 +1102,7 @@ Map<String, dynamic> _$Ships$Query$ShipToJson(Ships$Query$Ship instance) =>
       'roles': instance.roles,
       'home_port': instance.homePort,
       'model': instance.model,
+      'type': instance.type,
     };
 
 Ships$Query _$Ships$QueryFromJson(Map<String, dynamic> json) => Ships$Query()
@@ -1051,12 +1122,16 @@ Launch$Query$Launch$LaunchLinks _$Launch$Query$Launch$LaunchLinksFromJson(
     Launch$Query$Launch$LaunchLinks()
       ..flickrImages = (json['flickr_images'] as List<dynamic>?)
           ?.map((e) => e as String?)
-          .toList();
+          .toList()
+      ..videoLink = json['video_link'] as String?
+      ..redditLaunch = json['reddit_launch'] as String?;
 
 Map<String, dynamic> _$Launch$Query$Launch$LaunchLinksToJson(
         Launch$Query$Launch$LaunchLinks instance) =>
     <String, dynamic>{
       'flickr_images': instance.flickrImages,
+      'video_link': instance.videoLink,
+      'reddit_launch': instance.redditLaunch,
     };
 
 Launch$Query$Launch$LaunchRocket$Rocket

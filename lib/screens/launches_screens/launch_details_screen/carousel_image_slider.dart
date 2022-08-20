@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
@@ -41,16 +42,14 @@ class _CarouselImageSliderState extends State<CarouselImageSlider> {
              itemBuilder: (context, index, realIdx) {
                 return Container(
                  child: Center(
-                    child: Image.network(
-                      widget.imgList[index],
+                    child: CachedNetworkImage(
+                      imageUrl: widget.imgList[index],
+                     errorWidget: (context,_,__){return Container();},
                      fit: BoxFit.cover,
-                     width: 1000,
-                     loadingBuilder: (context, child, loadingProgress) {
-                       if (loadingProgress == null) return child;
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                  );
-                },
+                      placeholder: (context, url) =>  Container(
+                          width: 5.w,
+                          child: CircularProgressIndicator()),
+
               )),
             );
           },

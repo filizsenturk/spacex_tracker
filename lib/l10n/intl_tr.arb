@@ -4,8 +4,8 @@
   "homeScreen": "Ana sayfa",
   "missions": "Missions",
   "serverError": "Server hatası",
-  "active": "aktif",
-  "inactive": "aktif değil",
+  "active": "Aktif",
+  "inactive": "Aktif değil",
   "moreInfo": "daha fazla bilgi",
   "rocketName": "Roket adı",
   "successRate": "Başarı Oranı",
@@ -37,6 +37,9 @@
   "spacexHistory" : "SpaceX Tarihsel Gelişmeler",
   "succes": "Başarılı",
   "failed" :"Başarısız",
-  "gallery": "Galeri"
+  "gallery": "Galeri",
+  "yes": "Evet",
+  "no": "Hayır",
+  "unknown": "Bilinmiyor"
 
 }

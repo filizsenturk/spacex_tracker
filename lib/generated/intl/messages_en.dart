@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "missionName": MessageLookupByLibrary.simpleMessage("Mission name"),
         "missions": MessageLookupByLibrary.simpleMessage("Missions"),
         "moreInfo": MessageLookupByLibrary.simpleMessage("more info"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "payloadInfo": MessageLookupByLibrary.simpleMessage("Payload"),
         "reUseable": MessageLookupByLibrary.simpleMessage("Reuseable"),
         "rocketName": MessageLookupByLibrary.simpleMessage("Rocket Name"),
@@ -61,8 +62,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "successRate": MessageLookupByLibrary.simpleMessage("Success Rate"),
         "trueValue": MessageLookupByLibrary.simpleMessage("true"),
         "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "unknown": MessageLookupByLibrary.simpleMessage("Unknown"),
         "usedForMission":
             MessageLookupByLibrary.simpleMessage("Used for mission"),
-        "website": MessageLookupByLibrary.simpleMessage("Website")
+        "website": MessageLookupByLibrary.simpleMessage("Website"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes")
       };
 }

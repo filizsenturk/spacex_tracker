@@ -22,7 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "active": MessageLookupByLibrary.simpleMessage("aktif"),
+        "active": MessageLookupByLibrary.simpleMessage("Aktif"),
         "boosters": MessageLookupByLibrary.simpleMessage("Ateşleyiciler"),
         "buildYear": MessageLookupByLibrary.simpleMessage("Yapım Yılı"),
         "costPerLunch": MessageLookupByLibrary.simpleMessage("Kalkış maliyeti"),
@@ -34,7 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "firstFlight": MessageLookupByLibrary.simpleMessage("İlk uçuş"),
         "gallery": MessageLookupByLibrary.simpleMessage("Galeri"),
         "homeScreen": MessageLookupByLibrary.simpleMessage("Ana sayfa"),
-        "inactive": MessageLookupByLibrary.simpleMessage("aktif değil"),
+        "inactive": MessageLookupByLibrary.simpleMessage("Aktif değil"),
         "landingLegsMaterial": MessageLookupByLibrary.simpleMessage(
             "İniş Bacaklarında kullanılan materyal"),
         "landingLegsNumber":
@@ -46,6 +46,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "missionName": MessageLookupByLibrary.simpleMessage("Görev adı"),
         "missions": MessageLookupByLibrary.simpleMessage("Missions"),
         "moreInfo": MessageLookupByLibrary.simpleMessage("daha fazla bilgi"),
+        "no": MessageLookupByLibrary.simpleMessage("Hayır"),
         "payloadInfo": MessageLookupByLibrary.simpleMessage("Yük bilgisi"),
         "reUseable":
             MessageLookupByLibrary.simpleMessage("Yeniden Kullanılabilir"),
@@ -63,8 +64,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "successRate": MessageLookupByLibrary.simpleMessage("Başarı Oranı"),
         "trueValue": MessageLookupByLibrary.simpleMessage("Evet"),
         "type": MessageLookupByLibrary.simpleMessage("Tipi"),
+        "unknown": MessageLookupByLibrary.simpleMessage("Bilinmiyor"),
         "usedForMission":
             MessageLookupByLibrary.simpleMessage("Kullanıldığı Görev"),
-        "website": MessageLookupByLibrary.simpleMessage("Web sitesi")
+        "website": MessageLookupByLibrary.simpleMessage("Web sitesi"),
+        "yes": MessageLookupByLibrary.simpleMessage("Evet")
       };
 }

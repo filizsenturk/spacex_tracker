@@ -418,21 +418,64 @@ class Mission$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
-class Landings$Query$Launch extends JsonSerializable with EquatableMixin {
-  Landings$Query$Launch();
+class Landings$Query$Landpad$Location extends JsonSerializable
+    with EquatableMixin {
+  Landings$Query$Landpad$Location();
 
-  factory Landings$Query$Launch.fromJson(Map<String, dynamic> json) =>
-      _$Landings$Query$LaunchFromJson(json);
+  factory Landings$Query$Landpad$Location.fromJson(Map<String, dynamic> json) =>
+      _$Landings$Query$Landpad$LocationFromJson(json);
 
-  @JsonKey(name: 'launch_success')
-  bool? launchSuccess;
+  String? name;
+
+  String? region;
+
+  @override
+  List<Object?> get props => [name, region];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Landings$Query$Landpad$LocationToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Landings$Query$Landpad extends JsonSerializable with EquatableMixin {
+  Landings$Query$Landpad();
+
+  factory Landings$Query$Landpad.fromJson(Map<String, dynamic> json) =>
+      _$Landings$Query$LandpadFromJson(json);
+
+  @JsonKey(name: 'attempted_landings')
+  String? attemptedLandings;
 
   String? details;
 
+  @JsonKey(name: 'full_name')
+  String? fullName;
+
+  String? id;
+
+  @JsonKey(name: 'landing_type')
+  String? landingType;
+
+  Landings$Query$Landpad$Location? location;
+
+  String? status;
+
+  @JsonKey(name: 'successful_landings')
+  String? successfulLandings;
+
   @override
-  List<Object?> get props => [launchSuccess, details];
+  List<Object?> get props => [
+        attemptedLandings,
+        details,
+        fullName,
+        id,
+        landingType,
+        location,
+        status,
+        successfulLandings
+      ];
   @override
-  Map<String, dynamic> toJson() => _$Landings$Query$LaunchToJson(this);
+  Map<String, dynamic> toJson() => _$Landings$Query$LandpadToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -442,10 +485,10 @@ class Landings$Query extends JsonSerializable with EquatableMixin {
   factory Landings$Query.fromJson(Map<String, dynamic> json) =>
       _$Landings$QueryFromJson(json);
 
-  Landings$Query$Launch? launchNext;
+  List<Landings$Query$Landpad?>? landpads;
 
   @override
-  List<Object?> get props => [launchNext];
+  List<Object?> get props => [landpads];
   @override
   Map<String, dynamic> toJson() => _$Landings$QueryToJson(this);
 }
@@ -705,6 +748,32 @@ class Payloads$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Missions$Query$Mission$Payload extends JsonSerializable
+    with EquatableMixin {
+  Missions$Query$Mission$Payload();
+
+  factory Missions$Query$Mission$Payload.fromJson(Map<String, dynamic> json) =>
+      _$Missions$Query$Mission$PayloadFromJson(json);
+
+  String? nationality;
+
+  @JsonKey(name: 'payload_type')
+  String? payloadType;
+
+  String? manufacturer;
+
+  List<String?>? customers;
+
+  bool? reused;
+
+  @override
+  List<Object?> get props =>
+      [nationality, payloadType, manufacturer, customers, reused];
+  @override
+  Map<String, dynamic> toJson() => _$Missions$Query$Mission$PayloadToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class Missions$Query$Mission extends JsonSerializable with EquatableMixin {
   Missions$Query$Mission();
 
@@ -723,9 +792,11 @@ class Missions$Query$Mission extends JsonSerializable with EquatableMixin {
 
   List<String?>? manufacturers;
 
+  List<Missions$Query$Mission$Payload?>? payloads;
+
   @override
   List<Object?> get props =>
-      [id, name, wikipedia, website, description, manufacturers];
+      [id, name, wikipedia, website, description, manufacturers, payloads];
   @override
   Map<String, dynamic> toJson() => _$Missions$Query$MissionToJson(this);
 }
@@ -972,8 +1043,10 @@ class Rockets$Query$Rocket$RocketSecondStage extends JsonSerializable
   @JsonKey(name: 'fuel_amount_tons')
   double? fuelAmountTons;
 
+  int? engines;
+
   @override
-  List<Object?> get props => [fuelAmountTons];
+  List<Object?> get props => [fuelAmountTons, engines];
   @override
   Map<String, dynamic> toJson() =>
       _$Rockets$Query$Rocket$RocketSecondStageToJson(this);
@@ -1006,10 +1079,17 @@ class Rockets$Query$Rocket extends JsonSerializable with EquatableMixin {
 
   bool? active;
 
+  int? boosters;
+
+  String? company;
+
   @JsonKey(name: 'first_stage')
   Rockets$Query$Rocket$RocketFirstStage? firstStage;
 
   int? stages;
+
+  @JsonKey(name: 'first_flight')
+  DateTime? firstFlight;
 
   @JsonKey(name: 'landing_legs')
   Rockets$Query$Rocket$RocketLandingLegs? landingLegs;
@@ -1034,8 +1114,11 @@ class Rockets$Query$Rocket extends JsonSerializable with EquatableMixin {
   @override
   List<Object?> get props => [
         active,
+        boosters,
+        company,
         firstStage,
         stages,
+        firstFlight,
         landingLegs,
         costPerLaunch,
         name,
@@ -1321,6 +1404,8 @@ class Ships$Query$Ship extends JsonSerializable with EquatableMixin {
 
   String? image;
 
+  String? name;
+
   List<Ships$Query$Ship$ShipMission?>? missions;
 
   @JsonKey(name: 'successful_landings')
@@ -1342,11 +1427,14 @@ class Ships$Query$Ship extends JsonSerializable with EquatableMixin {
 
   String? model;
 
+  String? type;
+
   @override
   List<Object?> get props => [
         active,
         id,
         image,
+        name,
         missions,
         successfulLandings,
         yearBuilt,
@@ -1354,7 +1442,8 @@ class Ships$Query$Ship extends JsonSerializable with EquatableMixin {
         kw$class,
         roles,
         homePort,
-        model
+        model,
+        type
       ];
   @override
   Map<String, dynamic> toJson() => _$Ships$Query$ShipToJson(this);
@@ -1386,8 +1475,14 @@ class Launch$Query$Launch$LaunchLinks extends JsonSerializable
   @JsonKey(name: 'flickr_images')
   List<String?>? flickrImages;
 
+  @JsonKey(name: 'video_link')
+  String? videoLink;
+
+  @JsonKey(name: 'reddit_launch')
+  String? redditLaunch;
+
   @override
-  List<Object?> get props => [flickrImages];
+  List<Object?> get props => [flickrImages, videoLink, redditLaunch];
   @override
   Map<String, dynamic> toJson() =>
       _$Launch$Query$Launch$LaunchLinksToJson(this);
@@ -2030,19 +2125,68 @@ final LANDINGS_QUERY_DOCUMENT = DocumentNode(definitions: [
       directives: [],
       selectionSet: SelectionSetNode(selections: [
         FieldNode(
-            name: NameNode(value: 'launchNext'),
+            name: NameNode(value: 'landpads'),
             alias: null,
             arguments: [],
             directives: [],
             selectionSet: SelectionSetNode(selections: [
               FieldNode(
-                  name: NameNode(value: 'launch_success'),
+                  name: NameNode(value: 'attempted_landings'),
                   alias: null,
                   arguments: [],
                   directives: [],
                   selectionSet: null),
               FieldNode(
                   name: NameNode(value: 'details'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'full_name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'landing_type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'location'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'region'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'successful_landings'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -2466,7 +2610,44 @@ final MISSIONS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'payloads'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'nationality'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'payload_type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'manufacturer'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'customers'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'reused'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
             ]))
       ]))
 ]);
@@ -2714,6 +2895,18 @@ final ROCKETS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   directives: [],
                   selectionSet: null),
               FieldNode(
+                  name: NameNode(value: 'boosters'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'company'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
                   name: NameNode(value: 'first_stage'),
                   alias: null,
                   arguments: [],
@@ -2734,6 +2927,12 @@ final ROCKETS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   ])),
               FieldNode(
                   name: NameNode(value: 'stages'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'first_flight'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -2777,6 +2976,12 @@ final ROCKETS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   selectionSet: SelectionSetNode(selections: [
                     FieldNode(
                         name: NameNode(value: 'fuel_amount_tons'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'engines'),
                         alias: null,
                         arguments: [],
                         directives: [],
@@ -3142,6 +3347,12 @@ final SHIPS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   directives: [],
                   selectionSet: null),
               FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
                   name: NameNode(value: 'missions'),
                   alias: null,
                   arguments: [],
@@ -3198,6 +3409,12 @@ final SHIPS_QUERY_DOCUMENT = DocumentNode(definitions: [
                   selectionSet: null),
               FieldNode(
                   name: NameNode(value: 'model'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'type'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -3293,6 +3510,18 @@ final LAUNCH_QUERY_DOCUMENT = DocumentNode(definitions: [
                   selectionSet: SelectionSetNode(selections: [
                     FieldNode(
                         name: NameNode(value: 'flickr_images'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'video_link'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'reddit_launch'),
                         alias: null,
                         arguments: [],
                         directives: [],

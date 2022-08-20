@@ -57,6 +57,7 @@ dependencies:
 
   #image
   carousel_slider: ^4.1.1
+  cached_network_image: ^3.2.1
 
   #video
   youtube_player_flutter:  ^8.1.0
