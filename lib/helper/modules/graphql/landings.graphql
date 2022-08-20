@@ -1,8 +1,16 @@
-#this is a test query don't use this
 
 query landings{
-    launchNext{
-        launch_success
+    landpads{
+        attempted_landings
         details
+        full_name
+        id
+        landing_type
+        location {
+            name
+            region
+        }
+        status
+        successful_landings
     }
 }

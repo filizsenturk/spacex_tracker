@@ -19,11 +19,42 @@ class Launches$Query$Launch$LaunchLinks extends JsonSerializable
   @JsonKey(name: 'article_link')
   String? articleLink;
 
+  @JsonKey(name: 'video_link')
+  String? videoLink;
+
+  String? wikipedia;
+
+  @JsonKey(name: 'flickr_images')
+  List<String?>? flickrImages;
+
+  @JsonKey(name: 'reddit_launch')
+  String? redditLaunch;
+
   @override
-  List<Object?> get props => [articleLink];
+  List<Object?> get props =>
+      [articleLink, videoLink, wikipedia, flickrImages, redditLaunch];
   @override
   Map<String, dynamic> toJson() =>
       _$Launches$Query$Launch$LaunchLinksToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Launches$Query$Launch$LaunchSite extends JsonSerializable
+    with EquatableMixin {
+  Launches$Query$Launch$LaunchSite();
+
+  factory Launches$Query$Launch$LaunchSite.fromJson(
+          Map<String, dynamic> json) =>
+      _$Launches$Query$Launch$LaunchSiteFromJson(json);
+
+  @JsonKey(name: 'site_name')
+  String? siteName;
+
+  @override
+  List<Object?> get props => [siteName];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Launches$Query$Launch$LaunchSiteToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -178,12 +209,34 @@ class Launches$Query$Launch extends JsonSerializable with EquatableMixin {
   @JsonKey(name: 'launch_year')
   String? launchYear;
 
+  @JsonKey(name: 'mission_name')
+  String? missionName;
+
   String? details;
+
+  @JsonKey(name: 'launch_site')
+  Launches$Query$Launch$LaunchSite? launchSite;
+
+  @JsonKey(name: 'launch_success')
+  bool? launchSuccess;
+
+  @JsonKey(name: 'launch_date_local')
+  DateTime? launchDateLocal;
 
   Launches$Query$Launch$LaunchRocket? rocket;
 
   @override
-  List<Object?> get props => [id, links, launchYear, details, rocket];
+  List<Object?> get props => [
+        id,
+        links,
+        launchYear,
+        missionName,
+        details,
+        launchSite,
+        launchSuccess,
+        launchDateLocal,
+        rocket
+      ];
   @override
   Map<String, dynamic> toJson() => _$Launches$Query$LaunchToJson(this);
 }
@@ -204,6 +257,126 @@ class Launches$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Ship$Query$Ship$ShipMission extends JsonSerializable with EquatableMixin {
+  Ship$Query$Ship$ShipMission();
+
+  factory Ship$Query$Ship$ShipMission.fromJson(Map<String, dynamic> json) =>
+      _$Ship$Query$Ship$ShipMissionFromJson(json);
+
+  String? flight;
+
+  String? name;
+
+  @override
+  List<Object?> get props => [flight, name];
+  @override
+  Map<String, dynamic> toJson() => _$Ship$Query$Ship$ShipMissionToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Ship$Query$Ship extends JsonSerializable with EquatableMixin {
+  Ship$Query$Ship();
+
+  factory Ship$Query$Ship.fromJson(Map<String, dynamic> json) =>
+      _$Ship$Query$ShipFromJson(json);
+
+  List<Ship$Query$Ship$ShipMission?>? missions;
+
+  String? model;
+
+  String? name;
+
+  @JsonKey(name: 'home_port')
+  String? homePort;
+
+  String? id;
+
+  String? image;
+
+  @JsonKey(name: 'attempted_landings')
+  int? attemptedLandings;
+
+  List<String?>? roles;
+
+  @JsonKey(name: 'year_built')
+  int? yearBuilt;
+
+  String? type;
+
+  bool? active;
+
+  @JsonKey(name: 'successful_landings')
+  int? successfulLandings;
+
+  String? status;
+
+  String? url;
+
+  @override
+  List<Object?> get props => [
+        missions,
+        model,
+        name,
+        homePort,
+        id,
+        image,
+        attemptedLandings,
+        roles,
+        yearBuilt,
+        type,
+        active,
+        successfulLandings,
+        status,
+        url
+      ];
+  @override
+  Map<String, dynamic> toJson() => _$Ship$Query$ShipToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Ship$Query extends JsonSerializable with EquatableMixin {
+  Ship$Query();
+
+  factory Ship$Query.fromJson(Map<String, dynamic> json) =>
+      _$Ship$QueryFromJson(json);
+
+  Ship$Query$Ship? ship;
+
+  @override
+  List<Object?> get props => [ship];
+  @override
+  Map<String, dynamic> toJson() => _$Ship$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Mission$Query$Mission$Payload extends JsonSerializable
+    with EquatableMixin {
+  Mission$Query$Mission$Payload();
+
+  factory Mission$Query$Mission$Payload.fromJson(Map<String, dynamic> json) =>
+      _$Mission$Query$Mission$PayloadFromJson(json);
+
+  @JsonKey(name: 'payload_type')
+  String? payloadType;
+
+  String? nationality;
+
+  String? manufacturer;
+
+  bool? reused;
+
+  List<String?>? customers;
+
+  String? orbit;
+
+  @override
+  List<Object?> get props =>
+      [payloadType, nationality, manufacturer, reused, customers, orbit];
+  @override
+  Map<String, dynamic> toJson() => _$Mission$Query$Mission$PayloadToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class Mission$Query$Mission extends JsonSerializable with EquatableMixin {
   Mission$Query$Mission();
 
@@ -220,9 +393,11 @@ class Mission$Query$Mission extends JsonSerializable with EquatableMixin {
 
   List<String?>? manufacturers;
 
+  List<Mission$Query$Mission$Payload?>? payloads;
+
   @override
   List<Object?> get props =>
-      [name, wikipedia, website, description, manufacturers];
+      [name, wikipedia, website, description, manufacturers, payloads];
   @override
   Map<String, dynamic> toJson() => _$Mission$Query$MissionToJson(this);
 }
@@ -240,6 +415,293 @@ class Mission$Query extends JsonSerializable with EquatableMixin {
   List<Object?> get props => [mission];
   @override
   Map<String, dynamic> toJson() => _$Mission$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Landings$Query$Launch extends JsonSerializable with EquatableMixin {
+  Landings$Query$Launch();
+
+  factory Landings$Query$Launch.fromJson(Map<String, dynamic> json) =>
+      _$Landings$Query$LaunchFromJson(json);
+
+  @JsonKey(name: 'launch_success')
+  bool? launchSuccess;
+
+  String? details;
+
+  @override
+  List<Object?> get props => [launchSuccess, details];
+  @override
+  Map<String, dynamic> toJson() => _$Landings$Query$LaunchToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Landings$Query extends JsonSerializable with EquatableMixin {
+  Landings$Query();
+
+  factory Landings$Query.fromJson(Map<String, dynamic> json) =>
+      _$Landings$QueryFromJson(json);
+
+  Landings$Query$Launch? launchNext;
+
+  @override
+  List<Object?> get props => [launchNext];
+  @override
+  Map<String, dynamic> toJson() => _$Landings$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragon$Query$Dragon$DragonHeatShield extends JsonSerializable
+    with EquatableMixin {
+  Dragon$Query$Dragon$DragonHeatShield();
+
+  factory Dragon$Query$Dragon$DragonHeatShield.fromJson(
+          Map<String, dynamic> json) =>
+      _$Dragon$Query$Dragon$DragonHeatShieldFromJson(json);
+
+  @JsonKey(name: 'dev_partner')
+  String? devPartner;
+
+  String? material;
+
+  @JsonKey(name: 'size_meters')
+  double? sizeMeters;
+
+  @override
+  List<Object?> get props => [devPartner, material, sizeMeters];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Dragon$Query$Dragon$DragonHeatShieldToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragon$Query$Dragon$DragonThrust extends JsonSerializable
+    with EquatableMixin {
+  Dragon$Query$Dragon$DragonThrust();
+
+  factory Dragon$Query$Dragon$DragonThrust.fromJson(
+          Map<String, dynamic> json) =>
+      _$Dragon$Query$Dragon$DragonThrustFromJson(json);
+
+  int? amount;
+
+  String? type;
+
+  @override
+  List<Object?> get props => [amount, type];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Dragon$Query$Dragon$DragonThrustToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragon$Query$Dragon extends JsonSerializable with EquatableMixin {
+  Dragon$Query$Dragon();
+
+  factory Dragon$Query$Dragon.fromJson(Map<String, dynamic> json) =>
+      _$Dragon$Query$DragonFromJson(json);
+
+  String? description;
+
+  bool? active;
+
+  String? wikipedia;
+
+  @JsonKey(name: 'heat_shield')
+  Dragon$Query$Dragon$DragonHeatShield? heatShield;
+
+  @JsonKey(name: 'orbit_duration_yr')
+  int? orbitDurationYr;
+
+  @JsonKey(name: 'crew_capacity')
+  int? crewCapacity;
+
+  String? name;
+
+  String? type;
+
+  List<Dragon$Query$Dragon$DragonThrust?>? thrusters;
+
+  @override
+  List<Object?> get props => [
+        description,
+        active,
+        wikipedia,
+        heatShield,
+        orbitDurationYr,
+        crewCapacity,
+        name,
+        type,
+        thrusters
+      ];
+  @override
+  Map<String, dynamic> toJson() => _$Dragon$Query$DragonToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragon$Query extends JsonSerializable with EquatableMixin {
+  Dragon$Query();
+
+  factory Dragon$Query.fromJson(Map<String, dynamic> json) =>
+      _$Dragon$QueryFromJson(json);
+
+  Dragon$Query$Dragon? dragon;
+
+  @override
+  List<Object?> get props => [dragon];
+  @override
+  Map<String, dynamic> toJson() => _$Dragon$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragons$Query$Dragon$DragonHeatShield extends JsonSerializable
+    with EquatableMixin {
+  Dragons$Query$Dragon$DragonHeatShield();
+
+  factory Dragons$Query$Dragon$DragonHeatShield.fromJson(
+          Map<String, dynamic> json) =>
+      _$Dragons$Query$Dragon$DragonHeatShieldFromJson(json);
+
+  String? material;
+
+  @JsonKey(name: 'dev_partner')
+  String? devPartner;
+
+  @JsonKey(name: 'temp_degrees')
+  int? tempDegrees;
+
+  @override
+  List<Object?> get props => [material, devPartner, tempDegrees];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Dragons$Query$Dragon$DragonHeatShieldToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragons$Query$Dragon$DragonThrust extends JsonSerializable
+    with EquatableMixin {
+  Dragons$Query$Dragon$DragonThrust();
+
+  factory Dragons$Query$Dragon$DragonThrust.fromJson(
+          Map<String, dynamic> json) =>
+      _$Dragons$Query$Dragon$DragonThrustFromJson(json);
+
+  int? amount;
+
+  String? type;
+
+  @JsonKey(name: 'fuel_1')
+  String? fuel1;
+
+  @JsonKey(name: 'fuel_2')
+  String? fuel2;
+
+  @override
+  List<Object?> get props => [amount, type, fuel1, fuel2];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Dragons$Query$Dragon$DragonThrustToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragons$Query$Dragon extends JsonSerializable with EquatableMixin {
+  Dragons$Query$Dragon();
+
+  factory Dragons$Query$Dragon.fromJson(Map<String, dynamic> json) =>
+      _$Dragons$Query$DragonFromJson(json);
+
+  bool? active;
+
+  String? wikipedia;
+
+  String? name;
+
+  @JsonKey(name: 'crew_capacity')
+  int? crewCapacity;
+
+  @JsonKey(name: 'orbit_duration_yr')
+  int? orbitDurationYr;
+
+  String? type;
+
+  String? description;
+
+  @JsonKey(name: 'heat_shield')
+  Dragons$Query$Dragon$DragonHeatShield? heatShield;
+
+  List<Dragons$Query$Dragon$DragonThrust?>? thrusters;
+
+  @override
+  List<Object?> get props => [
+        active,
+        wikipedia,
+        name,
+        crewCapacity,
+        orbitDurationYr,
+        type,
+        description,
+        heatShield,
+        thrusters
+      ];
+  @override
+  Map<String, dynamic> toJson() => _$Dragons$Query$DragonToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Dragons$Query extends JsonSerializable with EquatableMixin {
+  Dragons$Query();
+
+  factory Dragons$Query.fromJson(Map<String, dynamic> json) =>
+      _$Dragons$QueryFromJson(json);
+
+  List<Dragons$Query$Dragon?>? dragons;
+
+  @override
+  List<Object?> get props => [dragons];
+  @override
+  Map<String, dynamic> toJson() => _$Dragons$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Payloads$Query$Payload extends JsonSerializable with EquatableMixin {
+  Payloads$Query$Payload();
+
+  factory Payloads$Query$Payload.fromJson(Map<String, dynamic> json) =>
+      _$Payloads$Query$PayloadFromJson(json);
+
+  String? manufacturer;
+
+  String? id;
+
+  String? nationality;
+
+  String? orbit;
+
+  @JsonKey(name: 'payload_type')
+  String? payloadType;
+
+  bool? reused;
+
+  @override
+  List<Object?> get props =>
+      [manufacturer, id, nationality, orbit, payloadType, reused];
+  @override
+  Map<String, dynamic> toJson() => _$Payloads$Query$PayloadToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Payloads$Query extends JsonSerializable with EquatableMixin {
+  Payloads$Query();
+
+  factory Payloads$Query.fromJson(Map<String, dynamic> json) =>
+      _$Payloads$QueryFromJson(json);
+
+  List<Payloads$Query$Payload?>? payloads;
+
+  @override
+  List<Object?> get props => [payloads];
+  @override
+  Map<String, dynamic> toJson() => _$Payloads$QueryToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -603,6 +1065,112 @@ class Rockets$Query extends JsonSerializable with EquatableMixin {
 }
 
 @JsonSerializable(explicitToJson: true)
+class Histories$Query$History$Link extends JsonSerializable
+    with EquatableMixin {
+  Histories$Query$History$Link();
+
+  factory Histories$Query$History$Link.fromJson(Map<String, dynamic> json) =>
+      _$Histories$Query$History$LinkFromJson(json);
+
+  String? article;
+
+  @override
+  List<Object?> get props => [article];
+  @override
+  Map<String, dynamic> toJson() => _$Histories$Query$History$LinkToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Histories$Query$History$Launch$LaunchRocket extends JsonSerializable
+    with EquatableMixin {
+  Histories$Query$History$Launch$LaunchRocket();
+
+  factory Histories$Query$History$Launch$LaunchRocket.fromJson(
+          Map<String, dynamic> json) =>
+      _$Histories$Query$History$Launch$LaunchRocketFromJson(json);
+
+  @JsonKey(name: 'rocket_name')
+  String? rocketName;
+
+  @override
+  List<Object?> get props => [rocketName];
+  @override
+  Map<String, dynamic> toJson() =>
+      _$Histories$Query$History$Launch$LaunchRocketToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Histories$Query$History$Launch extends JsonSerializable
+    with EquatableMixin {
+  Histories$Query$History$Launch();
+
+  factory Histories$Query$History$Launch.fromJson(Map<String, dynamic> json) =>
+      _$Histories$Query$History$LaunchFromJson(json);
+
+  @JsonKey(name: 'launch_year')
+  String? launchYear;
+
+  String? id;
+
+  bool? upcoming;
+
+  @JsonKey(name: 'mission_id')
+  List<String?>? missionId;
+
+  @JsonKey(name: 'mission_name')
+  String? missionName;
+
+  @JsonKey(name: 'launch_success')
+  bool? launchSuccess;
+
+  Histories$Query$History$Launch$LaunchRocket? rocket;
+
+  @override
+  List<Object?> get props =>
+      [launchYear, id, upcoming, missionId, missionName, launchSuccess, rocket];
+  @override
+  Map<String, dynamic> toJson() => _$Histories$Query$History$LaunchToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Histories$Query$History extends JsonSerializable with EquatableMixin {
+  Histories$Query$History();
+
+  factory Histories$Query$History.fromJson(Map<String, dynamic> json) =>
+      _$Histories$Query$HistoryFromJson(json);
+
+  String? id;
+
+  String? details;
+
+  String? title;
+
+  Histories$Query$History$Link? links;
+
+  Histories$Query$History$Launch? flight;
+
+  @override
+  List<Object?> get props => [id, details, title, links, flight];
+  @override
+  Map<String, dynamic> toJson() => _$Histories$Query$HistoryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
+class Histories$Query extends JsonSerializable with EquatableMixin {
+  Histories$Query();
+
+  factory Histories$Query.fromJson(Map<String, dynamic> json) =>
+      _$Histories$QueryFromJson(json);
+
+  List<Histories$Query$History?>? histories;
+
+  @override
+  List<Object?> get props => [histories];
+  @override
+  Map<String, dynamic> toJson() => _$Histories$QueryToJson(this);
+}
+
+@JsonSerializable(explicitToJson: true)
 class Rocket$Query$Rocket$RocketSecondStage extends JsonSerializable
     with EquatableMixin {
   Rocket$Query$Rocket$RocketSecondStage();
@@ -913,145 +1481,6 @@ class Launch$Query extends JsonSerializable with EquatableMixin {
   Map<String, dynamic> toJson() => _$Launch$QueryToJson(this);
 }
 
-@JsonSerializable(explicitToJson: true)
-class Histories$Query$History$Link extends JsonSerializable
-    with EquatableMixin {
-  Histories$Query$History$Link();
-
-  factory Histories$Query$History$Link.fromJson(Map<String, dynamic> json) =>
-      _$Histories$Query$History$LinkFromJson(json);
-
-  String? article;
-
-  @override
-  List<Object?> get props => [article];
-  @override
-  Map<String, dynamic> toJson() => _$Histories$Query$History$LinkToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Histories$Query$History$Launch$LaunchRocket extends JsonSerializable
-    with EquatableMixin {
-  Histories$Query$History$Launch$LaunchRocket();
-
-  factory Histories$Query$History$Launch$LaunchRocket.fromJson(
-          Map<String, dynamic> json) =>
-      _$Histories$Query$History$Launch$LaunchRocketFromJson(json);
-
-  @JsonKey(name: 'rocket_name')
-  String? rocketName;
-
-  @override
-  List<Object?> get props => [rocketName];
-  @override
-  Map<String, dynamic> toJson() =>
-      _$Histories$Query$History$Launch$LaunchRocketToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Histories$Query$History$Launch extends JsonSerializable
-    with EquatableMixin {
-  Histories$Query$History$Launch();
-
-  factory Histories$Query$History$Launch.fromJson(Map<String, dynamic> json) =>
-      _$Histories$Query$History$LaunchFromJson(json);
-
-  @JsonKey(name: 'launch_year')
-  String? launchYear;
-
-  String? id;
-
-  bool? upcoming;
-
-  @JsonKey(name: 'mission_id')
-  List<String?>? missionId;
-
-  @JsonKey(name: 'mission_name')
-  String? missionName;
-
-  @JsonKey(name: 'launch_success')
-  bool? launchSuccess;
-
-  Histories$Query$History$Launch$LaunchRocket? rocket;
-
-  @override
-  List<Object?> get props =>
-      [launchYear, id, upcoming, missionId, missionName, launchSuccess, rocket];
-  @override
-  Map<String, dynamic> toJson() => _$Histories$Query$History$LaunchToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Histories$Query$History extends JsonSerializable with EquatableMixin {
-  Histories$Query$History();
-
-  factory Histories$Query$History.fromJson(Map<String, dynamic> json) =>
-      _$Histories$Query$HistoryFromJson(json);
-
-  String? id;
-
-  String? details;
-
-  String? title;
-
-  Histories$Query$History$Link? links;
-
-  Histories$Query$History$Launch? flight;
-
-  @override
-  List<Object?> get props => [id, details, title, links, flight];
-  @override
-  Map<String, dynamic> toJson() => _$Histories$Query$HistoryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Histories$Query extends JsonSerializable with EquatableMixin {
-  Histories$Query();
-
-  factory Histories$Query.fromJson(Map<String, dynamic> json) =>
-      _$Histories$QueryFromJson(json);
-
-  List<Histories$Query$History?>? histories;
-
-  @override
-  List<Object?> get props => [histories];
-  @override
-  Map<String, dynamic> toJson() => _$Histories$QueryToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Landings$Query$Launch extends JsonSerializable with EquatableMixin {
-  Landings$Query$Launch();
-
-  factory Landings$Query$Launch.fromJson(Map<String, dynamic> json) =>
-      _$Landings$Query$LaunchFromJson(json);
-
-  @JsonKey(name: 'launch_success')
-  bool? launchSuccess;
-
-  String? details;
-
-  @override
-  List<Object?> get props => [launchSuccess, details];
-  @override
-  Map<String, dynamic> toJson() => _$Landings$Query$LaunchToJson(this);
-}
-
-@JsonSerializable(explicitToJson: true)
-class Landings$Query extends JsonSerializable with EquatableMixin {
-  Landings$Query();
-
-  factory Landings$Query.fromJson(Map<String, dynamic> json) =>
-      _$Landings$QueryFromJson(json);
-
-  Landings$Query$Launch? launchNext;
-
-  @override
-  List<Object?> get props => [launchNext];
-  @override
-  Map<String, dynamic> toJson() => _$Landings$QueryToJson(this);
-}
-
 final LAUNCHES_QUERY_DOCUMENT_OPERATION_NAME = 'launches';
 final LAUNCHES_QUERY_DOCUMENT = DocumentNode(definitions: [
   OperationDefinitionNode(
@@ -1083,6 +1512,30 @@ final LAUNCHES_QUERY_DOCUMENT = DocumentNode(definitions: [
                         alias: null,
                         arguments: [],
                         directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'video_link'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'wikipedia'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'flickr_images'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'reddit_launch'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
                         selectionSet: null)
                   ])),
               FieldNode(
@@ -1092,7 +1545,38 @@ final LAUNCHES_QUERY_DOCUMENT = DocumentNode(definitions: [
                   directives: [],
                   selectionSet: null),
               FieldNode(
+                  name: NameNode(value: 'mission_name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
                   name: NameNode(value: 'details'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'launch_site'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'site_name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'launch_success'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'launch_date_local'),
                   alias: null,
                   arguments: [],
                   directives: [],
@@ -1243,6 +1727,165 @@ class LaunchesQuery extends GraphQLQuery<Launches$Query, JsonSerializable> {
 }
 
 @JsonSerializable(explicitToJson: true)
+class ShipArguments extends JsonSerializable with EquatableMixin {
+  ShipArguments({required this.id});
+
+  @override
+  factory ShipArguments.fromJson(Map<String, dynamic> json) =>
+      _$ShipArgumentsFromJson(json);
+
+  late String id;
+
+  @override
+  List<Object?> get props => [id];
+  @override
+  Map<String, dynamic> toJson() => _$ShipArgumentsToJson(this);
+}
+
+final SHIP_QUERY_DOCUMENT_OPERATION_NAME = 'ship';
+final SHIP_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'ship'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'id')),
+            type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'ship'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'id'),
+                  value: VariableNode(name: NameNode(value: 'id')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'missions'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'flight'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'model'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'home_port'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'image'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'attempted_landings'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'roles'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'year_built'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'active'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'successful_landings'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'status'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'url'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class ShipQuery extends GraphQLQuery<Ship$Query, ShipArguments> {
+  ShipQuery({required this.variables});
+
+  @override
+  final DocumentNode document = SHIP_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = SHIP_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final ShipArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  Ship$Query parse(Map<String, dynamic> json) => Ship$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
 class MissionArguments extends JsonSerializable with EquatableMixin {
   MissionArguments({required this.id});
 
@@ -1311,7 +1954,50 @@ final MISSION_QUERY_DOCUMENT = DocumentNode(definitions: [
                   alias: null,
                   arguments: [],
                   directives: [],
-                  selectionSet: null)
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'payloads'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'payload_type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'nationality'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'manufacturer'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'reused'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'customers'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'orbit'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
             ]))
       ]))
 ]);
@@ -1333,6 +2019,402 @@ class MissionQuery extends GraphQLQuery<Mission$Query, MissionArguments> {
   @override
   Mission$Query parse(Map<String, dynamic> json) =>
       Mission$Query.fromJson(json);
+}
+
+final LANDINGS_QUERY_DOCUMENT_OPERATION_NAME = 'landings';
+final LANDINGS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'landings'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'launchNext'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'launch_success'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'details'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class LandingsQuery extends GraphQLQuery<Landings$Query, JsonSerializable> {
+  LandingsQuery();
+
+  @override
+  final DocumentNode document = LANDINGS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = LANDINGS_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  Landings$Query parse(Map<String, dynamic> json) =>
+      Landings$Query.fromJson(json);
+}
+
+@JsonSerializable(explicitToJson: true)
+class DragonArguments extends JsonSerializable with EquatableMixin {
+  DragonArguments({required this.id});
+
+  @override
+  factory DragonArguments.fromJson(Map<String, dynamic> json) =>
+      _$DragonArgumentsFromJson(json);
+
+  late String id;
+
+  @override
+  List<Object?> get props => [id];
+  @override
+  Map<String, dynamic> toJson() => _$DragonArgumentsToJson(this);
+}
+
+final DRAGON_QUERY_DOCUMENT_OPERATION_NAME = 'dragon';
+final DRAGON_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'dragon'),
+      variableDefinitions: [
+        VariableDefinitionNode(
+            variable: VariableNode(name: NameNode(value: 'id')),
+            type: NamedTypeNode(name: NameNode(value: 'ID'), isNonNull: true),
+            defaultValue: DefaultValueNode(value: null),
+            directives: [])
+      ],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'dragon'),
+            alias: null,
+            arguments: [
+              ArgumentNode(
+                  name: NameNode(value: 'id'),
+                  value: VariableNode(name: NameNode(value: 'id')))
+            ],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'description'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'active'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'wikipedia'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'heat_shield'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'dev_partner'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'material'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'size_meters'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'orbit_duration_yr'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'crew_capacity'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'thrusters'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'amount'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class DragonQuery extends GraphQLQuery<Dragon$Query, DragonArguments> {
+  DragonQuery({required this.variables});
+
+  @override
+  final DocumentNode document = DRAGON_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = DRAGON_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  final DragonArguments variables;
+
+  @override
+  List<Object?> get props => [document, operationName, variables];
+  @override
+  Dragon$Query parse(Map<String, dynamic> json) => Dragon$Query.fromJson(json);
+}
+
+final DRAGONS_QUERY_DOCUMENT_OPERATION_NAME = 'dragons';
+final DRAGONS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'dragons'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'dragons'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'active'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'wikipedia'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'name'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'crew_capacity'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'orbit_duration_yr'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'description'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'heat_shield'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'material'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'dev_partner'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'temp_degrees'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'thrusters'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'amount'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'type'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'fuel_1'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'fuel_2'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ]))
+            ]))
+      ]))
+]);
+
+class DragonsQuery extends GraphQLQuery<Dragons$Query, JsonSerializable> {
+  DragonsQuery();
+
+  @override
+  final DocumentNode document = DRAGONS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = DRAGONS_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  Dragons$Query parse(Map<String, dynamic> json) =>
+      Dragons$Query.fromJson(json);
+}
+
+final PAYLOADS_QUERY_DOCUMENT_OPERATION_NAME = 'payloads';
+final PAYLOADS_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'payloads'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'payloads'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'manufacturer'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'nationality'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'orbit'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'payload_type'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'reused'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null)
+            ]))
+      ]))
+]);
+
+class PayloadsQuery extends GraphQLQuery<Payloads$Query, JsonSerializable> {
+  PayloadsQuery();
+
+  @override
+  final DocumentNode document = PAYLOADS_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = PAYLOADS_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  Payloads$Query parse(Map<String, dynamic> json) =>
+      Payloads$Query.fromJson(json);
 }
 
 final MISSIONS_QUERY_DOCUMENT_OPERATION_NAME = 'missions';
@@ -1757,6 +2839,127 @@ class RocketsQuery extends GraphQLQuery<Rockets$Query, JsonSerializable> {
       Rockets$Query.fromJson(json);
 }
 
+final HISTORIES_QUERY_DOCUMENT_OPERATION_NAME = 'histories';
+final HISTORIES_QUERY_DOCUMENT = DocumentNode(definitions: [
+  OperationDefinitionNode(
+      type: OperationType.query,
+      name: NameNode(value: 'histories'),
+      variableDefinitions: [],
+      directives: [],
+      selectionSet: SelectionSetNode(selections: [
+        FieldNode(
+            name: NameNode(value: 'histories'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: SelectionSetNode(selections: [
+              FieldNode(
+                  name: NameNode(value: 'id'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'details'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'title'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null),
+              FieldNode(
+                  name: NameNode(value: 'links'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'article'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null)
+                  ])),
+              FieldNode(
+                  name: NameNode(value: 'flight'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: SelectionSetNode(selections: [
+                    FieldNode(
+                        name: NameNode(value: 'launch_year'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'upcoming'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'mission_id'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'mission_name'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'launch_success'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: null),
+                    FieldNode(
+                        name: NameNode(value: 'rocket'),
+                        alias: null,
+                        arguments: [],
+                        directives: [],
+                        selectionSet: SelectionSetNode(selections: [
+                          FieldNode(
+                              name: NameNode(value: 'rocket_name'),
+                              alias: null,
+                              arguments: [],
+                              directives: [],
+                              selectionSet: null)
+                        ]))
+                  ]))
+            ]))
+      ]))
+]);
+
+class HistoriesQuery extends GraphQLQuery<Histories$Query, JsonSerializable> {
+  HistoriesQuery();
+
+  @override
+  final DocumentNode document = HISTORIES_QUERY_DOCUMENT;
+
+  @override
+  final String operationName = HISTORIES_QUERY_DOCUMENT_OPERATION_NAME;
+
+  @override
+  List<Object?> get props => [document, operationName];
+  @override
+  Histories$Query parse(Map<String, dynamic> json) =>
+      Histories$Query.fromJson(json);
+}
+
 @JsonSerializable(explicitToJson: true)
 class RocketArguments extends JsonSerializable with EquatableMixin {
   RocketArguments({required this.id});
@@ -2153,171 +3356,4 @@ class LaunchQuery extends GraphQLQuery<Launch$Query, LaunchArguments> {
   List<Object?> get props => [document, operationName, variables];
   @override
   Launch$Query parse(Map<String, dynamic> json) => Launch$Query.fromJson(json);
-}
-
-final HISTORIES_QUERY_DOCUMENT_OPERATION_NAME = 'histories';
-final HISTORIES_QUERY_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'histories'),
-      variableDefinitions: [],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'histories'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'id'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'details'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'title'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'links'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FieldNode(
-                        name: NameNode(value: 'article'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null)
-                  ])),
-              FieldNode(
-                  name: NameNode(value: 'flight'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: SelectionSetNode(selections: [
-                    FieldNode(
-                        name: NameNode(value: 'launch_year'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'upcoming'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'mission_id'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'mission_name'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'launch_success'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: null),
-                    FieldNode(
-                        name: NameNode(value: 'rocket'),
-                        alias: null,
-                        arguments: [],
-                        directives: [],
-                        selectionSet: SelectionSetNode(selections: [
-                          FieldNode(
-                              name: NameNode(value: 'rocket_name'),
-                              alias: null,
-                              arguments: [],
-                              directives: [],
-                              selectionSet: null)
-                        ]))
-                  ]))
-            ]))
-      ]))
-]);
-
-class HistoriesQuery extends GraphQLQuery<Histories$Query, JsonSerializable> {
-  HistoriesQuery();
-
-  @override
-  final DocumentNode document = HISTORIES_QUERY_DOCUMENT;
-
-  @override
-  final String operationName = HISTORIES_QUERY_DOCUMENT_OPERATION_NAME;
-
-  @override
-  List<Object?> get props => [document, operationName];
-  @override
-  Histories$Query parse(Map<String, dynamic> json) =>
-      Histories$Query.fromJson(json);
-}
-
-final LANDINGS_QUERY_DOCUMENT_OPERATION_NAME = 'landings';
-final LANDINGS_QUERY_DOCUMENT = DocumentNode(definitions: [
-  OperationDefinitionNode(
-      type: OperationType.query,
-      name: NameNode(value: 'landings'),
-      variableDefinitions: [],
-      directives: [],
-      selectionSet: SelectionSetNode(selections: [
-        FieldNode(
-            name: NameNode(value: 'launchNext'),
-            alias: null,
-            arguments: [],
-            directives: [],
-            selectionSet: SelectionSetNode(selections: [
-              FieldNode(
-                  name: NameNode(value: 'launch_success'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null),
-              FieldNode(
-                  name: NameNode(value: 'details'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null)
-            ]))
-      ]))
-]);
-
-class LandingsQuery extends GraphQLQuery<Landings$Query, JsonSerializable> {
-  LandingsQuery();
-
-  @override
-  final DocumentNode document = LANDINGS_QUERY_DOCUMENT;
-
-  @override
-  final String operationName = LANDINGS_QUERY_DOCUMENT_OPERATION_NAME;
-
-  @override
-  List<Object?> get props => [document, operationName];
-  @override
-  Landings$Query parse(Map<String, dynamic> json) =>
-      Landings$Query.fromJson(json);
 }

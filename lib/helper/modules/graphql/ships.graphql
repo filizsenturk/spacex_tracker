@@ -3,6 +3,7 @@ query  ships{
         active
         id
         image
+        name
         missions {
             name
             flight
@@ -14,5 +15,6 @@ query  ships{
         roles
         home_port
         model
+        type
     }
 }

@@ -1,34 +1,36 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sizer/sizer.dart';
 import 'package:spacex_tracker/local_data/local_helper.dart';
-import 'package:spacex_tracker/utilities/app_theme.dart';
+import 'package:spacex_tracker/utilities/colors.dart';
 
 class HomeScreenCard extends StatelessWidget {
+  final double width;
   final String title;
   final VoidCallback onTap;
- const HomeScreenCard({Key? key,required this.title, required this.onTap}) : super(key: key);
+  const HomeScreenCard({Key? key,
+    required this.width,
+    required this.title,
+    required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.only(left: 3.w),
-        width: 100.w,
-        height: 20.h,
+        width: width,
+        height: 15.h,
         decoration: BoxDecoration(
-          color: Theme.of(context).homeCardBackgrounColor,
-          border: Border.all(color:Theme.of(context).homeCardBorderColor,width: 10),
-          borderRadius: BorderRadius.circular(15),
+          color: AppColors.lightLandingColor,
+          borderRadius: BorderRadius.only(bottomRight: Radius.circular(80)),
           boxShadow: const [
             BoxShadow(
-              color: Colors.pink,
-              spreadRadius: 2,
+              color: Colors.grey,
+              spreadRadius: 5,
               blurStyle: BlurStyle.outer,
               blurRadius: 5,
-              offset: Offset(0, 1), // changes position of shadow
+              offset: Offset(2, -2), // changes position of shadow
             ),
           ],
         ),
@@ -36,14 +38,19 @@ class HomeScreenCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(title,
-            style: GoogleFonts.abel(
-              fontSize: LocalHelper.getFontSize(20.sp),
-              fontWeight: FontWeight.w800,
-            ),
+            Padding(
+              padding:  EdgeInsets.only(left :2.w),
+              child: Text(
+                title,
+                style: GoogleFonts.poppins(
+                  color: AppColors.lightTextColor,
+                  fontSize: LocalHelper.getFontSize(16.sp),
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
             )
           ],
-        ) ,
+        ),
       ),
     );
   }

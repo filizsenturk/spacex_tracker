@@ -5,5 +5,13 @@ query mission($id: ID!){
         website
         description
         manufacturers
+        payloads {
+            payload_type
+            nationality
+            manufacturer
+            reused
+            customers
+            orbit
+        }
     }
 }

@@ -229,6 +229,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payload`
+  String get payloadInfo {
+    return Intl.message(
+      'Payload',
+      name: 'payloadInfo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mission name`
+  String get missionName {
+    return Intl.message(
+      'Mission name',
+      name: 'missionName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Manufacturers`
+  String get manufacturers {
+    return Intl.message(
+      'Manufacturers',
+      name: 'manufacturers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Website`
+  String get website {
+    return Intl.message(
+      'Website',
+      name: 'website',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Details`
+  String get details {
+    return Intl.message(
+      'Details',
+      name: 'details',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `true`
+  String get trueValue {
+    return Intl.message(
+      'true',
+      name: 'trueValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `false`
+  String get falseValue {
+    return Intl.message(
+      'false',
+      name: 'falseValue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ship Name`
+  String get shipName {
+    return Intl.message(
+      'Ship Name',
+      name: 'shipName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Ship Model`
+  String get shipModel {
+    return Intl.message(
+      'Ship Model',
+      name: 'shipModel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Build Year`
+  String get buildYear {
+    return Intl.message(
+      'Build Year',
+      name: 'buildYear',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Roles`
+  String get roles {
+    return Intl.message(
+      'Roles',
+      name: 'roles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get type {
+    return Intl.message(
+      'Type',
+      name: 'type',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Used for mission`
+  String get usedForMission {
+    return Intl.message(
+      'Used for mission',
+      name: 'usedForMission',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Succesful landings`
+  String get succesfulLandings {
+    return Intl.message(
+      'Succesful landings',
+      name: 'succesfulLandings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rocket Type`
+  String get rocketType {
+    return Intl.message(
+      'Rocket Type',
+      name: 'rocketType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SpaceX History`
+  String get spacexHistory {
+    return Intl.message(
+      'SpaceX History',
+      name: 'spacexHistory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Success`
+  String get succes {
+    return Intl.message(
+      'Success',
+      name: 'succes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed`
+  String get failed {
+    return Intl.message(
+      'Failed',
+      name: 'failed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get gallery {
+    return Intl.message(
+      'Gallery',
+      name: 'gallery',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

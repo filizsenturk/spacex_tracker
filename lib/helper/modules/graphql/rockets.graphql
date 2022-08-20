@@ -1,11 +1,14 @@
 query rockets{
     rockets{
         active
+        boosters
+        company
         first_stage {
             reusable
             engines
         }
         stages
+        first_flight
         landing_legs {
             material
             number
@@ -14,6 +17,7 @@ query rockets{
         name
         second_stage {
             fuel_amount_tons
+            engines
         }
         success_rate_pct
         id
@@ -22,5 +26,6 @@ query rockets{
             meters
             feet
         }
+
     }
 }

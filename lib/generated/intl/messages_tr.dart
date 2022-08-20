@@ -24,9 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "active": MessageLookupByLibrary.simpleMessage("aktif"),
         "boosters": MessageLookupByLibrary.simpleMessage("Ateşleyiciler"),
+        "buildYear": MessageLookupByLibrary.simpleMessage("Yapım Yılı"),
         "costPerLunch": MessageLookupByLibrary.simpleMessage("Kalkış maliyeti"),
+        "description": MessageLookupByLibrary.simpleMessage("Görev tanımı"),
+        "details": MessageLookupByLibrary.simpleMessage("Detaylar"),
         "engine": MessageLookupByLibrary.simpleMessage("Motor"),
+        "failed": MessageLookupByLibrary.simpleMessage("Başarısız"),
+        "falseValue": MessageLookupByLibrary.simpleMessage("Hayır"),
         "firstFlight": MessageLookupByLibrary.simpleMessage("İlk uçuş"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Galeri"),
         "homeScreen": MessageLookupByLibrary.simpleMessage("Ana sayfa"),
         "inactive": MessageLookupByLibrary.simpleMessage("aktif değil"),
         "landingLegsMaterial": MessageLookupByLibrary.simpleMessage(
@@ -36,12 +42,29 @@ class MessageLookup extends MessageLookupByLibrary {
         "landings": MessageLookupByLibrary.simpleMessage("İnişler"),
         "language": MessageLookupByLibrary.simpleMessage("Türkçe"),
         "launches": MessageLookupByLibrary.simpleMessage("Kalkışlar"),
+        "manufacturers": MessageLookupByLibrary.simpleMessage("Üreticiler"),
+        "missionName": MessageLookupByLibrary.simpleMessage("Görev adı"),
         "missions": MessageLookupByLibrary.simpleMessage("Missions"),
         "moreInfo": MessageLookupByLibrary.simpleMessage("daha fazla bilgi"),
+        "payloadInfo": MessageLookupByLibrary.simpleMessage("Yük bilgisi"),
         "reUseable":
             MessageLookupByLibrary.simpleMessage("Yeniden Kullanılabilir"),
         "rocketName": MessageLookupByLibrary.simpleMessage("Roket adı"),
+        "rocketType": MessageLookupByLibrary.simpleMessage("Roket Tipi"),
+        "roles": MessageLookupByLibrary.simpleMessage("Rolü"),
         "serverError": MessageLookupByLibrary.simpleMessage("Server hatası"),
-        "successRate": MessageLookupByLibrary.simpleMessage("Başarı Oranı")
+        "shipModel": MessageLookupByLibrary.simpleMessage("Gemi Modeli"),
+        "shipName": MessageLookupByLibrary.simpleMessage("Gemi Adı"),
+        "spacexHistory":
+            MessageLookupByLibrary.simpleMessage("SpaceX Tarihsel Gelişmeler"),
+        "succes": MessageLookupByLibrary.simpleMessage("Başarılı"),
+        "succesfulLandings":
+            MessageLookupByLibrary.simpleMessage("Başarılı iniş sayısı"),
+        "successRate": MessageLookupByLibrary.simpleMessage("Başarı Oranı"),
+        "trueValue": MessageLookupByLibrary.simpleMessage("Evet"),
+        "type": MessageLookupByLibrary.simpleMessage("Tipi"),
+        "usedForMission":
+            MessageLookupByLibrary.simpleMessage("Kullanıldığı Görev"),
+        "website": MessageLookupByLibrary.simpleMessage("Web sitesi")
       };
 }

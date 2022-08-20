@@ -3,9 +3,19 @@ query launches{
         id
         links {
             article_link
+            video_link
+            wikipedia
+            flickr_images
+            reddit_launch
         }
         launch_year
+        mission_name
         details
+        launch_site {
+            site_name
+        }
+        launch_success
+        launch_date_local
         rocket {
             rocket_name
             rocket_type

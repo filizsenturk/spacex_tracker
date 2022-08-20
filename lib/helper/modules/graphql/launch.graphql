@@ -6,6 +6,9 @@ query launch($id: ID!){
         mission_name
         links {
             flickr_images
+            video_link
+            reddit_launch
+
         }
         launch_year
         rocket {

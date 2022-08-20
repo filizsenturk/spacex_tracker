@@ -24,9 +24,15 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "active": MessageLookupByLibrary.simpleMessage("active"),
         "boosters": MessageLookupByLibrary.simpleMessage("Boosters"),
+        "buildYear": MessageLookupByLibrary.simpleMessage("Build Year"),
         "costPerLunch": MessageLookupByLibrary.simpleMessage("Cost Per Lunch"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
+        "details": MessageLookupByLibrary.simpleMessage("Details"),
         "engine": MessageLookupByLibrary.simpleMessage("Engine"),
+        "failed": MessageLookupByLibrary.simpleMessage("Failed"),
+        "falseValue": MessageLookupByLibrary.simpleMessage("false"),
         "firstFlight": MessageLookupByLibrary.simpleMessage("First Flight"),
+        "gallery": MessageLookupByLibrary.simpleMessage("Gallery"),
         "homeScreen": MessageLookupByLibrary.simpleMessage("Home Screen"),
         "inactive": MessageLookupByLibrary.simpleMessage("inactive"),
         "landingLegsMaterial":
@@ -36,11 +42,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "landings": MessageLookupByLibrary.simpleMessage("Landings"),
         "language": MessageLookupByLibrary.simpleMessage("English"),
         "launches": MessageLookupByLibrary.simpleMessage("Launches"),
+        "manufacturers": MessageLookupByLibrary.simpleMessage("Manufacturers"),
+        "missionName": MessageLookupByLibrary.simpleMessage("Mission name"),
         "missions": MessageLookupByLibrary.simpleMessage("Missions"),
         "moreInfo": MessageLookupByLibrary.simpleMessage("more info"),
+        "payloadInfo": MessageLookupByLibrary.simpleMessage("Payload"),
         "reUseable": MessageLookupByLibrary.simpleMessage("Reuseable"),
         "rocketName": MessageLookupByLibrary.simpleMessage("Rocket Name"),
+        "rocketType": MessageLookupByLibrary.simpleMessage("Rocket Type"),
+        "roles": MessageLookupByLibrary.simpleMessage("Roles"),
         "serverError": MessageLookupByLibrary.simpleMessage("Server Error"),
-        "successRate": MessageLookupByLibrary.simpleMessage("Success Rate")
+        "shipModel": MessageLookupByLibrary.simpleMessage("Ship Model"),
+        "shipName": MessageLookupByLibrary.simpleMessage("Ship Name"),
+        "spacexHistory": MessageLookupByLibrary.simpleMessage("SpaceX History"),
+        "succes": MessageLookupByLibrary.simpleMessage("Success"),
+        "succesfulLandings":
+            MessageLookupByLibrary.simpleMessage("Succesful landings"),
+        "successRate": MessageLookupByLibrary.simpleMessage("Success Rate"),
+        "trueValue": MessageLookupByLibrary.simpleMessage("true"),
+        "type": MessageLookupByLibrary.simpleMessage("Type"),
+        "usedForMission":
+            MessageLookupByLibrary.simpleMessage("Used for mission"),
+        "website": MessageLookupByLibrary.simpleMessage("Website")
       };
 }

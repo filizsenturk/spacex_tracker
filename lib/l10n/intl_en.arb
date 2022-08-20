@@ -1,4 +1,5 @@
 {
+  "@@locale": "en",
   "language" : "English",
   "homeScreen": "Home Screen",
   "missions":  "Missions",
@@ -16,7 +17,26 @@
   "landingLegsNumber": "Landing Legs Number",
   "firstFlight" : "First Flight",
   "launches" : "Launches",
-  "landings" : "Landings"
-
+  "landings" : "Landings",
+  "description": "Description",
+  "payloadInfo" : "Payload",
+  "missionName": "Mission name",
+  "manufacturers": "Manufacturers",
+  "website": "Website",
+  "details": "Details",
+  "trueValue": "true",
+  "falseValue": "false",
+  "shipName": "Ship Name",
+  "shipModel" : "Ship Model",
+  "buildYear": "Build Year",
+  "roles" : "Roles",
+  "type" : "Type",
+  "usedForMission": "Used for mission",
+  "succesfulLandings" : "Succesful landings",
+  "rocketType": "Rocket Type",
+  "spacexHistory" : "SpaceX History",
+  "succes": "Success",
+  "failed" :"Failed",
+  "gallery": "Gallery"
 
 }

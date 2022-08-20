@@ -1,0 +1,10 @@
+query payloads{
+    payloads{
+        manufacturer
+        id
+        nationality
+        orbit
+        payload_type
+        reused
+    }
+}

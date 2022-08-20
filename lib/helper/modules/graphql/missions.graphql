@@ -6,5 +6,12 @@ query missions{
         website
         description
         manufacturers
+        payloads {
+            nationality
+            payload_type
+            manufacturer
+            customers
+            reused
+        }
     }
 }

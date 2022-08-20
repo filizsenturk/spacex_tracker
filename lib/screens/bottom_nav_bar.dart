@@ -2,6 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:spacex_tracker/logic/cubit/bottom_nav_index_cubit.dart';
+import 'package:spacex_tracker/logic/cubit/home_cubit.dart';
+import 'package:spacex_tracker/logic/cubit/new_cubits/mission_selected_cubit.dart';
+import 'package:spacex_tracker/logic/cubit/new_cubits/rocket_selected_cubit.dart';
+import 'package:spacex_tracker/logic/cubit/new_cubits/ship_selected_cubit.dart';
+import 'package:spacex_tracker/logic/cubit/ship_selected_cubit.dart';
 import 'package:spacex_tracker/utilities/logger/simple_log_printer.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -15,24 +20,28 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final log = getLogger();
   onHomeClicked(){
     context.read<BottomNavIndexCubit>().setIndex(0);
+    context.read<HomeCubit>().setHomeScreen("");
     log.i("HomeClicked Started");
     log.i( "index is"+ context.read<BottomNavIndexCubit>().getIndex().toString());
   }
 
   onMissionClicked(){
     context.read<BottomNavIndexCubit>().setIndex(1);
+    context.read<MissionSelectedCubit>().setMissionSelected(false);
     log.i("onMissionClicked Started");
     log.i( "index is"+ context.read<BottomNavIndexCubit>().getIndex().toString());
   }
 
   onRocketClicked(){
     context.read<BottomNavIndexCubit>().setIndex(2);
+    context.read<RocketSelectedCubit>().setRocketSelected(false);
     log.i("onRocketClicked Started");
     log.i( "index is"+ context.read<BottomNavIndexCubit>().getIndex().toString());
   }
 
   onShipsClicked(){
     context.read<BottomNavIndexCubit>().setIndex(3);
+    context.read<ShipSelectedCubit>().setShipSelected(false);
     log.i("onShipsClicked Started");
     log.i( "index is"+ context.read<BottomNavIndexCubit>().getIndex().toString());
   }

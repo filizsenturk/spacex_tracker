@@ -1,0 +1,21 @@
+query dragon($id: ID!){
+    dragon(id: $id){
+        description
+        active
+        wikipedia
+        heat_shield {
+            dev_partner
+            material
+            size_meters
+        }
+        orbit_duration_yr
+        crew_capacity
+        name
+        type
+        thrusters {
+            amount
+            type
+        }
+
+    }
+}

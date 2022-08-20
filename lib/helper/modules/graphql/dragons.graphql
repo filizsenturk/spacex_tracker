@@ -1,0 +1,22 @@
+query dragons{
+    dragons{
+        active
+        wikipedia
+        name
+        crew_capacity
+        orbit_duration_yr
+        type
+        description
+        heat_shield {
+            material
+            dev_partner
+            temp_degrees
+        }
+        thrusters {
+            amount
+            type
+            fuel_1
+            fuel_2
+        }
+    }
+}

@@ -1,4 +1,5 @@
 {
+  "@@locale": "tr",
   "language": "Türkçe",
   "homeScreen": "Ana sayfa",
   "missions": "Missions",
@@ -16,5 +17,26 @@
   "landingLegsNumber": "İniş bacağı sayısı",
   "firstFlight" : "İlk uçuş",
   "launches" : "Kalkışlar",
-  "landings" : "İnişler"
+  "landings" : "İnişler",
+  "description": "Görev tanımı",
+  "payloadInfo" : "Yük bilgisi",
+  "missionName": "Görev adı",
+  "manufacturers": "Üreticiler",
+  "website": "Web sitesi",
+  "details": "Detaylar",
+  "trueValue": "Evet",
+  "falseValue": "Hayır",
+  "shipName": "Gemi Adı",
+  "shipModel" : "Gemi Modeli",
+  "buildYear": "Yapım Yılı",
+  "roles": "Rolü",
+  "type": "Tipi",
+  "usedForMission" : "Kullanıldığı Görev",
+  "succesfulLandings" : "Başarılı iniş sayısı",
+  "rocketType": "Roket Tipi",
+  "spacexHistory" : "SpaceX Tarihsel Gelişmeler",
+  "succes": "Başarılı",
+  "failed" :"Başarısız",
+  "gallery": "Galeri"
+
 }
